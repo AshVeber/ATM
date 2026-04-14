@@ -4,9 +4,15 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <fstream>
 
 using namespace std;
-
+void saveHistory(vector<string>& history) {
+    ofstream file("history.txt");
+    for(string h : history) {
+        file << h << endl;
+    }
+}
 void printSlow(const string& text) {
     for(char c : text) {
         cout << c << flush;
@@ -24,6 +30,19 @@ bool isNumber(const string& s) {
         }
     }
     return true;
+}
+void saveBalance(int balance) {
+    ofstream file("balance.txt");
+    file << balance;
+}
+int loadBalance() {
+    ifstream file("balance.txt");
+    int balance;
+
+    if(file >> balance) {
+        return balance;
+    }
+    return 1000;
 }
 int PinCode(int pincode) {
     int guess = 0;
@@ -71,9 +90,10 @@ void Menu() {
 void Balance(int balance, vector<string>& history) {
     cout << "Ur balance is: $" << balance << "\n";
     history.push_back(" Checked the balance");
+    saveHistory(history);
     this_thread::sleep_for(chrono::seconds(1));
 }
-void TopUp(int& balance, vector<string>& history) {
+void Topup(int& balance, vector<string>& history) {
     string sum;
 
     while(true) {
@@ -85,6 +105,8 @@ void TopUp(int& balance, vector<string>& history) {
             if(ssum <= 30000 && ssum > 0) {
                 balance += ssum;
                 history.push_back(" Topped up: $" + sum);
+                saveHistory(history);
+                saveBalance(balance);
                 this_thread::sleep_for(chrono::seconds(1));
                 break;
             }
@@ -100,16 +122,19 @@ void TopUp(int& balance, vector<string>& history) {
 
     }
 }
-void WithDraw(int& balance, vector<string>& history) {
+void Withdraw(int& balance, vector<string>& history) {
     string sum0;
     while(true) {
         cout << "Enter amount: ";
         cin >> sum0;
         if(isNumber(sum0)) {
             int sum00 = stoi(sum0);
-            if(sum00 <= balance && sum00 > 0 && sum00 < 500) {
+            const int limit = 500;
+            if(sum00 <= balance && sum00 > 0 && sum00 < limit) {
                 balance -= sum00;
                 history.push_back(" Withdraw funds: $" + sum0);
+                saveHistory(history);
+                saveBalance(balance);
                 this_thread::sleep_for(chrono::seconds(1));
                 break;
             }
@@ -126,7 +151,6 @@ void WithDraw(int& balance, vector<string>& history) {
     }  
 }
 void History(vector<string>& history) {
-    history.push_back(" Checked the history of operations");
     printSlow("Here is ur history of operations");
     cout << "===================================" << endl;
     for(string his : history) {
@@ -134,6 +158,16 @@ void History(vector<string>& history) {
     }
     cout << "===================================" << endl;
     this_thread::sleep_for(chrono::seconds(5));
+}
+vector<string> loadHistory() {
+    vector<string> history;
+    ifstream file("history.txt");
+    string line;
+
+    while(getline(file, line)) {
+        history.push_back(line);
+    }
+    return history;
 }
 
 int main() {
@@ -148,9 +182,8 @@ int main() {
     }
     else {
         string input;
-        int balance = 1000;
-        int wf = 0;
-        vector<string> history;
+        int balance = loadBalance();
+        vector<string> history = loadHistory();
 
         while(true) {
             Menu();
@@ -166,12 +199,12 @@ int main() {
                 }
                 else if(iinput == 2) {
                     printSlow("The limit of transfer is to $30000");
-                    TopUp(balance, history);
+                    Topup(balance, history);
                     
                 }
                 else if(iinput == 3) {
                     printSlow("The limit of transfer is to $500 per transision");
-                    WithDraw(balance, history);
+                    Withdraw(balance, history);
                 }
                 else if(iinput == 4) {
                     History(history);
@@ -189,6 +222,11 @@ int main() {
                 continue;
             }
             
+        }
+    }
+
+    return 0;
+}
         }
     }
 
