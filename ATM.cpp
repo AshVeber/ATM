@@ -1,30 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cctype>
 #include <fstream>
 
+#include "settings.h"
 
-bool isNumber(const std::string& s) {
-    if(s.empty()) {
-        return false;
-    }
-    for(char const &c : s) {
-        if(!(isdigit(c))) {
-            return false;
-        }
-    }
-    return true;
-}
-int loadPin(std::string log) {
-    std::ifstream file(log + "_pin.txt");
-    int pin;
-
-    if(file >> pin) {
-        return pin;
-    }
-    return -1;
-}
 std::string login() {
     std::cout << "Enter your username: " << std::endl;
     std::string log;
@@ -56,6 +36,7 @@ std::string login() {
     }
     return log;
 }
+
 void saveHistory(std::vector<std::string>& history, std::string log) {
     std::ofstream file(log + "_history.txt");
     for(std::string h : history) {
