@@ -246,6 +246,7 @@ int main() {
                 std::cout << "ERROR." << std::endl;
                 continue;
             }
+            
         }
     }
     return 0;
