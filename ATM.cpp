@@ -1,14 +1,11 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
 #include <vector>
 #include <string>
 #include <cctype>
 #include <fstream>
 
-using namespace std;
 
-bool isNumber(const string& s) {
+bool isNumber(const std::string& s) {
     if(s.empty()) {
         return false;
     }
@@ -19,8 +16,8 @@ bool isNumber(const string& s) {
     }
     return true;
 }
-int loadPin(string log) {
-    ifstream file(log + "_pin.txt");
+int loadPin(std::string log) {
+    std::ifstream file(log + "_pin.txt");
     int pin;
 
     if(file >> pin) {
@@ -28,30 +25,30 @@ int loadPin(string log) {
     }
     return -1;
 }
-string login() {
-    cout << "Enter your username: " << endl;
-    string log;
-    cin >> log;
+std::string login() {
+    std::cout << "Enter your username: " << std::endl;
+    std::string log;
+    std::cin >> log;
 
     int pin = loadPin(log);
 
     if(pin == -1) {
-        cout << "You do not have account in AV ATM" << endl;
-        cout << "Let's create one!" << endl;
+        std::cout << "You do not have account in AV ATM" << std::endl;
+        std::cout << "Let's create one!" << std::endl;
 
         while(true) {
-            string newPin;
-            cout << "Enter new PIN: " << endl;
-            cin >> newPin;
+            std::string newPin;
+            std::cout << "Enter new PIN: " << std::endl;
+            std::cin >> newPin;
             if(isNumber(newPin)) {
-                ofstream file(log + "_pin.txt");
+                std::ofstream file(log + "_pin.txt");
                 file << newPin;
-                cout << "Account created!" << endl;
+                std::cout << "Account created!" << std::endl;
                 pin = stoi(newPin);
                 break;
             }
             else {
-                cout << "The PIN must have numbers." << endl;
+                std::cout << "The PIN must have numbers." << std::endl;
                 continue;
             }
         }
@@ -59,18 +56,18 @@ string login() {
     }
     return log;
 }
-void saveHistory(vector<string>& history, string log) {
-    ofstream file(log + "_history.txt");
-    for(string h : history) {
-        file << h << endl;
+void saveHistory(std::vector<std::string>& history, std::string log) {
+    std::ofstream file(log + "_history.txt");
+    for(std::string h : history) {
+        file << h << std::endl;
     }
 }
-void saveBalance(int balance, string log) {
-    ofstream file(log + "_balance.txt");
+void saveBalance(int balance, std::string log) {
+    std::ofstream file(log + "_balance.txt");
     file << balance;
 }
-int loadBalance(string log) {
-    ifstream file(log + "_balance.txt");
+int loadBalance(std::string log) {
+    std::ifstream file(log + "_balance.txt");
     int balance;
 
     if(file >> balance) {
@@ -81,32 +78,31 @@ int loadBalance(string log) {
 int PinCode(int pincode) {
     int guess = 0;
     while(true) {
-        cout << "Enter the PIN-code" << endl;
-        cout << ">> ";
-        string pin;
-        cin >> pin;
+        std::cout << "Enter the PIN-code" << std::endl;
+        std::cout << ">> ";
+        std::string pin;
+        std::cin >> pin;
 
         if(isNumber(pin)) {
             if(stoi(pin) == pincode) {
-                cout << "Correct" << endl;
-                this_thread::sleep_for(chrono::seconds(1));
+                std::cout << "Correct" << std::endl;
                 break;
             }
             else {
-                cout << "Incorrect PIN-code." << endl;
+                std::cout << "Incorrect PIN-code." << std::endl;
                 guess += 1;
                 
                 if(guess == 3) {
-                    cout << "Ur card was blocked." << endl;
+                    std::cout << "Ur card was blocked." << std::endl;
                     return 0;
                 }else {
-                    cout << "U have " << 3 - guess << " attempts." << endl;
+                    std::cout << "U have " << 3 - guess << " attempts." << std::endl;
                     continue;
                 }
             }
         }
         else {
-            cout << "ERROR." << endl;
+            std::cout << "ERROR." << std::endl;
             continue;
         }
         
@@ -114,25 +110,24 @@ int PinCode(int pincode) {
     return 1;
 }
 void Menu() {
-    vector<int> nums = {1, 2, 3, 4, 5};
-    vector<string> amts = {"Balance", "Top up", "Withdraw funds", "Check the history", "Exit"};
+    std::vector<int> nums = {1, 2, 3, 4, 5};
+    std::vector<std::string> amts = {"Balance", "Top up", "Withdraw funds", "Check the history", "Exit"};
     
     for(size_t i = 0; i < nums.size(); ++i) {
-        cout << nums[i] << ". " << amts[i] << "\n";
+        std::cout << nums[i] << ". " << amts[i] << "\n";
         }
 }
-void Balance(int balance, vector<string>& history, string log) {
-    cout << "Ur balance is: $" << balance << "\n";
+void Balance(int balance, std::vector<std::string>& history, std::string log) {
+    std::cout << "Ur balance is: $" << balance << "\n";
     history.push_back(" Checked the balance");
     saveHistory(history, log);
-    this_thread::sleep_for(chrono::seconds(1));
 }
-void Topup(int& balance, vector<string>& history, string log) {
-    string sum;
+void Topup(int& balance, std::vector<std::string>& history, std::string log) {
+    std::string sum;
 
     while(true) {
-        cout << "Enter the sum: ";
-        cin >> sum;
+        std::cout << "Enter the sum: ";
+        std::cin >> sum;
         if(isNumber(sum)) {
             int ssum = stoi(sum);
 
@@ -141,26 +136,25 @@ void Topup(int& balance, vector<string>& history, string log) {
                 history.push_back(" Topped up: $" + sum);
                 saveHistory(history, log);
                 saveBalance(balance, log);
-                this_thread::sleep_for(chrono::seconds(1));
                 break;
             }
             else {
-                cout << "ERROR." << endl;
+                std::cout << "ERROR." << std::endl;
                 continue;
             }
         }
         else {
-            cout << "ERROR." << endl;
+            std::cout << "ERROR." << std::endl;
             continue;
         }
 
     }
 }
-void Withdraw(int& balance, vector<string>& history, string log) {
-    string sum0;
+void Withdraw(int& balance, std::vector<std::string>& history, std::string log) {
+    std::string sum0;
     while(true) {
-        cout << "Enter amount: ";
-        cin >> sum0;
+        std::cout << "Enter amount: ";
+        std::cin >> sum0;
         if(isNumber(sum0)) {
             int sum00 = stoi(sum0);
             const int limit = 500;
@@ -169,63 +163,58 @@ void Withdraw(int& balance, vector<string>& history, string log) {
                 history.push_back(" Withdraw funds: $" + sum0);
                 saveHistory(history, log);
                 saveBalance(balance, log);
-                this_thread::sleep_for(chrono::seconds(1));
                 break;
             }
             else {
-                cout << "ERROR." << endl;
+                std::cout << "ERROR." << std::endl;
                 continue;
             }
         }
         else {
-            cout << "ERROR." << endl;
+            std::cout << "ERROR." << std::endl;
             continue;
         }
         
     }  
 }
-vector<string> loadHistory(string log) {
-    vector<string> history;
-    ifstream file(log + "_history.txt");
-    string line;
+std::vector<std::string> loadHistory(std::string log) {
+    std::vector<std::string> history;
+    std::ifstream file(log + "_history.txt");
+    std::string line;
 
     while(getline(file, line)) {
         history.push_back(line);
     }
     return history;
 }
-void History(vector<string>& history) {
-    cout << "Here is ur history of operations" << endl;
-    cout << "===================================" << endl;
-    for(string his : history) {
-        cout << his << "\n";
+void History(std::vector<std::string>& history) {
+    std::cout << "Here is ur history of operations" << std::endl;
+    std::cout << "===================================" << std::endl;
+    for(std::string his : history) {
+        std::cout << his << "\n";
     }
-    cout << "===================================" << endl;
-    this_thread::sleep_for(chrono::seconds(3));
+    std::cout << "===================================" << std::endl;
 }
 
 
 int main() {
-    cout << "==============" << endl;
-    cout << "    ATM\n'AV' company" << "\n";
-    cout << "==============" << endl;
-
-    string log = login();
+    std::cout << "==============\n    ATM\n'AV' company\n==============" << std::endl;
+    std::string log = login();
     int pincode = loadPin(log);
     
     if(!PinCode(pincode)) {
         return 0;
     }
     else {
-        string input;
+        std::string input;
         int balance = loadBalance(log);
-        vector<string> history = loadHistory(log);
+        std::vector<std::string> history = loadHistory(log);
 
         while(true) {
             Menu();
 
-            cout << ">> ";
-            cin >> input;
+            std::cout << ">> ";
+            std::cin >> input;
 
             if(isNumber(input)) {
                 int iinput = stoi(input);
@@ -234,30 +223,29 @@ int main() {
                     Balance(balance, history, log);
                 }
                 else if(iinput == 2) {
-                    cout << "The limit of transfer is to $30000" << endl;
+                    std::cout << "The limit of transfer is to $30000" << std::endl;
                     Topup(balance, history, log);
                     
                 }
                 else if(iinput == 3) {
-                    cout << "The limit of transfer is to $500 per transision" << endl;
+                    std::cout << "The limit of transfer is to $500 per transision" << std::endl;
                     Withdraw(balance, history, log);
                 }
                 else if(iinput == 4) {
                     History(history);
                 }
                 else if(iinput == 5) {
-                    cout << "Goodbye!" << endl;
+                    std::cout << "Goodbye!" << std::endl;
                     break;
                 }else {
-                    cout << "Incorrect input." << endl;
+                    std::cout << "Incorrect input." << std::endl;
                     continue;
                 }
             }
             else {
-                cout << "ERROR." << endl;
+                std::cout << "ERROR." << std::endl;
                 continue;
             }
-            
         }
     }
     return 0;
