@@ -1,14 +1,14 @@
 # ATM (Automated Teller Machine)
-ATM is a 100% C++ indenpendent, open source backend project for your bank functionality that attracts with its own simplicity, low weight and readable code.
+ATM is a 100% C++ independent, open source backend project for your bank functionality that attracts with its own simplicity, low weight and readable code.
 
-It provides the latest ATM features for your transactions from cash to funds on your card. This project is **not** just some ATM! This is the whole **system** in some code lines that can download and upload the data about **you** on "AV" company' server! It does not stand still and keeps pace with technological progress!
+It provides the latest ATM features for your transactions from cash to funds on your card. This project is not just some ATM! This is the whole system in some code lines that can download and upload the data about you on "AV" company' server! It does not stand still and keeps pace with technological progress!
 
-## Thank YOU for choosing US! 
+## Thank you for choosing me! 
 
 # WELCOME TO ATM
-"AV" company focuses on the convenience andhigh functionality of its products. While other ATMs offer ony dull, utilitarian features, WE invite YOU to step into the shoes of an IT SPECIALIST and run our project via the terminal. The task may seem simple but that's only on paper!
+ATM focuses on the convenience andhigh functionality of its products. While other ATMs offer only dull, utilitarian features, I invite you to step into the shoes of an IT specialist and run my project via the terminal. The task may seem simple but that's only on paper!
 So, why us? Good question!
-## OUR ATM IS ABOUT:
+## ATM IS ABOUT:
 - simplicity (some 253 code lines)
 - cross-platform capability (Windows, Linux, Android, whatever.)
 - open source
@@ -18,7 +18,7 @@ So, why us? Good question!
 ## Option 1
 
 ### LINUX
-*Required dependencies: git, g++ compiler, CMake (version 4.3.3 or higher)*
+*Required dependencies: git, g++ compiler, CMake*
 
 #### Step 1:
 Open the terminal and run those commands.
@@ -89,8 +89,8 @@ make
 *ENJOY!*
 
 
-### WINDOWS (Did not tested)
-*Required dependencies: git, VScode, CMake (version 4.3.3 or higher)*
+### WINDOWS (not tested)
+*Required dependencies: git, VScode, CMake*
 
 #### Step 1:
 
@@ -144,8 +144,8 @@ cmake --build .
 ```
 *ENJOY!*
 
-### MacOs (did not tested)
-*Required dependencies: compiler, CMake (version 4.3.3 or higher)*
+### MacOs (not tested)
+*Required dependencies: compiler, CMake*
 
 #### Step 1:
 
@@ -175,12 +175,9 @@ make
 ```
 *ENJOY!*
 
-# LICENSE
-MIT - See individual plugin licenses in their respective directories.
-
 # ABOUT OWNER
 ## *Ash Veber*
-The young prorammer with huge potential! Ash interests ML engineering, devops, backend, frontend and ...BLENDER! You can ask Ash to write your dream code just for €5-10 per service!
+The young prorammer with huge potential! Ash interests ML engineering, devops, backend, frontend and ...BLENDER!
 
 ### Veber's contacts
 Telegram: @Tolfee
