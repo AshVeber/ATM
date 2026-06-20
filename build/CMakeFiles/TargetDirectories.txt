@@ -1,0 +1,3 @@
+/home/aveber/Desktop/git-projects/ATM/build/CMakeFiles/ATM.dir
+/home/aveber/Desktop/git-projects/ATM/build/CMakeFiles/edit_cache.dir
+/home/aveber/Desktop/git-projects/ATM/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ATM.dir/link.d CMakeFiles/ATM.dir/src/ATM.cpp.o -o ATM
