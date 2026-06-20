@@ -14,7 +14,7 @@ OUR ATM IS ABOUT:
 
 
 # QUICK START
--- Plan 'A' --
+-- Plan A --
 
 -+-+-LINUX-+-+-
 Step 1:
@@ -22,8 +22,9 @@ Required dependencies: CMake (version 4.3.3 and higher)
 Open the terminal and run those commands.
 
 Arch Linux:
-'sudo pacman -S cmake'
-'sudo yay -S cmake' 
+
+'''sudo pacman -S cmake
+sudo yay -S cmake''' 
 
 # What does it do
 This program asks you to create an account and pin-code if you do not have one. And then you have $1000 in your wallet. You can see your balance, top up, withdraw funds, check your history and exit. You can also create many accounts
