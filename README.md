@@ -15,12 +15,11 @@ So, why us? Good question!
 
 
 # QUICK START
-## Option 1
 
-### LINUX
+## LINUX
 *Required dependencies: git, g++ compiler, CMake*
 
-#### Step 1:
+### Step 1:
 Open the terminal and run those commands.
 
 *Install Cmake*
@@ -62,7 +61,7 @@ Ubuntu-based/Debian:
 # Bash
 sudo apt install git
 ```
-#### Step 2:
+### Step 2:
 
 Clone the repository.
 ```
@@ -70,7 +69,7 @@ Clone the repository.
 git clone REPOSITORY
 ```
 
-#### step 3:
+### step 3:
 
 Find the path to the repository.
 ```
@@ -89,10 +88,10 @@ make
 *ENJOY!*
 
 
-### WINDOWS (not tested)
+## WINDOWS (not tested)
 *Required dependencies: git, VScode, CMake*
 
-#### Step 1:
+### Step 1:
 
 *Install git*
 > https://git-scm.com/install/windows
@@ -103,7 +102,7 @@ make
 *Install CMake*
 >https://cmake.org/download/
 
-#### Step 2:
+### Step 2:
 - Run the VScode.
 - Download "CMake Tools" and "C/C++ Extension Pack" from Extensions (CTRL+SHIFT+X)
 - Create folder.
@@ -127,7 +126,7 @@ make
     ]
 }
 ```
-#### Step 3:
+### Step 3:
 Clone the repository using git
 ```
 # Bash
@@ -144,10 +143,10 @@ cmake --build .
 ```
 *ENJOY!*
 
-### MacOs (not tested)
+## MacOs (not tested)
 *Required dependencies: compiler, CMake*
 
-#### Step 1:
+### Step 1:
 
 *Install compiler*
 ```
@@ -161,7 +160,7 @@ xcode-select --install
 # Bash
 brew install cmake
 ```
-#### Step 2:
+### Step 2:
 Follow this commands:
 ```
 # Bash
